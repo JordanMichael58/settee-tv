@@ -2,6 +2,15 @@
 
 Turn an old Windows PC plugged into a television into a calm TV home screen you run from the sofa, with your phone as the remote.
 
+![The Settee TV home screen in the Evening look](docs/tv-evening.png)
+
+<p>
+  <img src="docs/tv-daylight.png" alt="The same home screen in the Daylight look with the coral accent" width="68%">
+  <img src="docs/remote.png" alt="The phone remote: a round D-pad with OK, Back, Numbers and the channel list" width="22%">
+</p>
+
+<sub>Screenshots use made-up news and weather.</sub>
+
 - **A home screen of cards:** a big clock, today's weather, the top news story, a family photo and your channels.
 - **Channels:** up to 30. Each one is a web site (YouTube, Netflix, a radio station…) or a program on the PC (VLC, Kodi…). Press its number on the remote to open it, and press Home to come back.
 - **Phone remote:** scan a QR code on the TV and type a six-digit code. Only phones on your own Wi-Fi can reach it.
