@@ -1,0 +1,83 @@
+/* Settee TV, the phone remote: one thumb, big targets, the TV's own look and accent. */
+:root {
+  --ground: #121c26; --card: #1c2b3a; --card-hi: #243649; --ink: #f4eee5; --ink-2: #b7c1ca; --ink-3: #8b98a4;
+  --shadow: rgba(3, 8, 13, .55); --on-accent: #121c26; --accent: #f2a33a;
+  --face: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+[data-look="daylight"] { --ground: #e4e8e3; --card: #f8f9f5; --card-hi: #ffffff; --ink: #16212b; --ink-2: #46535f; --ink-3: #5f6b76;
+                         --shadow: rgba(22, 33, 43, .14); --on-accent: #fff; color-scheme: light; }
+[data-accent="coral"] { --accent: #ff8266; } [data-accent="sage"] { --accent: #8fd0a0; }
+[data-accent="sky"] { --accent: #7cbcff; } [data-accent="plum"] { --accent: #cfa6f5; }
+[data-look="daylight"][data-accent="marigold"] { --accent: #a65f00; } [data-look="daylight"][data-accent="coral"] { --accent: #bd3f22; }
+[data-look="daylight"][data-accent="sage"] { --accent: #2b7444; } [data-look="daylight"][data-accent="sky"] { --accent: #1d65b3; }
+[data-look="daylight"][data-accent="plum"] { --accent: #7542ad; }
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { background: var(--ground); }
+body { margin: 0; min-height: 100vh; background: var(--ground); color: var(--ink); font-family: var(--face); font-size: 17px; line-height: 1.4;
+       padding: max(16px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom)); }
+::selection { background: var(--accent); color: var(--on-accent); }
+button, input { font: inherit; color: inherit; }
+button { border: 0; background: none; cursor: pointer; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sprite { display: none; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+[hidden] { display: none !important; }
+h1, h2, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+
+.mark { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 20px; letter-spacing: -.02em; }
+.mark-seat { width: 26px; height: 16px; border-radius: 8px 8px 4px 4px; background: var(--accent); box-shadow: inset 0 -5px 0 rgba(0, 0, 0, .22); }
+
+/* pairing */
+.pair { max-width: 420px; margin: 0 auto; padding-top: 8vh; display: flex; flex-direction: column; gap: 18px; }
+.pair h1 { font-size: 32px; font-weight: 600; letter-spacing: -.03em; line-height: 1.1; margin-top: 4vh; }
+.lead { color: var(--ink-2); }
+#pair-form { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+#code { background: var(--card); border: 2px solid transparent; border-radius: 18px; padding: 18px; font-size: 36px; letter-spacing: .18em;
+        text-align: center; font-variant-numeric: tabular-nums; caret-color: var(--accent); }
+#code:focus { border-color: var(--accent); outline: none; }
+#code::placeholder { color: var(--ink-3); }
+.primary { background: var(--accent); color: var(--on-accent); border-radius: 18px; padding: 18px; font-weight: 700; font-size: 19px;
+           box-shadow: 0 6px 16px var(--shadow); }
+.primary:active { transform: translateY(1px); }
+.primary:disabled { opacity: .55; }
+.error { color: var(--accent); min-height: 1.4em; font-weight: 600; }
+
+/* the remote */
+.remote { max-width: 420px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+.top { display: flex; align-items: center; justify-content: space-between; }
+.round { width: 52px; height: 52px; border-radius: 50%; background: var(--card); display: grid; place-items: center; box-shadow: 0 4px 12px var(--shadow); }
+
+.pad { position: relative; width: min(84vw, 340px); aspect-ratio: 1; margin: 6px auto 0; border-radius: 50%;
+       background: var(--card); box-shadow: 0 14px 32px var(--shadow), inset 0 2px 0 rgba(255, 255, 255, .05); }
+.arrow { position: absolute; width: 33%; height: 33%; display: grid; place-items: center; color: var(--ink-2); border-radius: 50%; }
+.arrow svg { width: 34px; height: 34px; }
+.arrow.up { left: 33.5%; top: 1%; } .arrow.down { left: 33.5%; bottom: 1%; } .arrow.down svg { transform: rotate(180deg); }
+.arrow.left { left: 1%; top: 33.5%; } .arrow.left svg { transform: rotate(-90deg); }
+.arrow.right { right: 1%; top: 33.5%; } .arrow.right svg { transform: rotate(90deg); }
+.okay { position: absolute; inset: 31%; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 800; font-size: 22px;
+        letter-spacing: .04em; box-shadow: 0 6px 16px var(--shadow); }
+.arrow:active, .round:active, .pill:active, .key:active, .chan:active { background: var(--card-hi); color: var(--ink); }
+.okay:active { transform: scale(.96); }
+.pressed { animation: press .25s ease-out; }
+@keyframes press { 50% { background: var(--card-hi); } }
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--card); border-radius: 18px; padding: 16px; font-weight: 600; }
+.pill[aria-expanded="true"] { background: var(--card-hi); color: var(--accent); }
+.keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.key { background: var(--card); border-radius: 16px; padding: 16px 0; font-size: 26px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.key.zero { grid-column: 2; }
+
+.chans h2 { font-size: 15px; font-weight: 600; color: var(--ink-2); margin-bottom: 10px; }
+#chans { display: grid; gap: 8px; }
+.chan { width: 100%; display: flex; align-items: center; gap: 14px; background: var(--card); border-radius: 16px; padding: 10px 14px 10px 10px; text-align: left; }
+.chan-n { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-weight: 700; color: var(--accent);
+          background: var(--ground); font-variant-numeric: tabular-nums; flex: none; }
+.chan-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.status { color: var(--ink-3); text-align: center; min-height: 1.4em; font-size: 15px; }
+
+@media (prefers-reduced-motion: reduce) { .pressed { animation: none; } }

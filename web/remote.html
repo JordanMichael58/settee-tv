@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-look="evening" data-accent="marigold">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#121c26">
+<title>Settee TV remote</title>
+<link rel="icon" href="/static/icon.svg">
+<link rel="stylesheet" href="/static/remote.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="r-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+  <symbol id="r-back" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+  <symbol id="r-home" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/></symbol>
+  <symbol id="r-keys" viewBox="0 0 24 24"><path d="M6 5h.01M12 5h.01M18 5h.01M6 11h.01M12 11h.01M18 11h.01M6 17h.01M12 17h.01M18 17h.01M12 22h.01"/></symbol>
+</svg>
+
+<main class="pair" id="pair" hidden>
+  <div class="mark"><span class="mark-seat"></span>Settee</div>
+  <h1 data-t="pairTitle">Connect to the TV</h1>
+  <p class="lead" data-t="pairLead">Type the six digits shown on the TV under Phone remote.</p>
+  <form id="pair-form" autocomplete="off">
+    <label class="sr" for="code" data-t="codeLabel">Code from the TV</label>
+    <input id="code" inputmode="numeric" pattern="[0-9 ]*" maxlength="7" placeholder="000 000" required>
+    <button class="primary" type="submit" data-t="connect">Connect</button>
+    <p class="error" id="pair-error" role="alert"></p>
+  </form>
+</main>
+
+<main class="remote" id="remote" hidden>
+  <header class="top">
+    <div class="mark"><span class="mark-seat"></span>Settee</div>
+    <button class="round" data-cmd="home" aria-label="Home"><svg><use href="#r-home"/></svg></button>
+  </header>
+
+  <div class="pad" role="group" aria-label="Arrows">
+    <button class="arrow up" data-cmd="up" aria-label="Up"><svg><use href="#r-up"/></svg></button>
+    <button class="arrow right" data-cmd="right" aria-label="Right"><svg><use href="#r-up"/></svg></button>
+    <button class="arrow down" data-cmd="down" aria-label="Down"><svg><use href="#r-up"/></svg></button>
+    <button class="arrow left" data-cmd="left" aria-label="Left"><svg><use href="#r-up"/></svg></button>
+    <button class="okay" data-cmd="ok">OK</button>
+  </div>
+
+  <div class="row">
+    <button class="pill" data-cmd="back"><svg><use href="#r-back"/></svg><span data-t="back">Back</span></button>
+    <button class="pill" id="toggle-keys" aria-expanded="false" aria-controls="keys"><svg><use href="#r-keys"/></svg><span data-t="numbers">Numbers</span></button>
+  </div>
+
+  <div class="keys" id="keys" hidden></div>
+
+  <section class="chans">
+    <h2 data-t="channels">Channels</h2>
+    <ul id="chans"></ul>
+  </section>
+  <p class="status" id="status" role="status"></p>
+</main>
+
+<script src="/static/remote.js"></script>
+</body>
+</html>

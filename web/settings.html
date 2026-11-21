@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" data-look="evening" data-accent="marigold">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settee TV settings</title>
+<link rel="icon" href="/static/icon.svg">
+<link rel="stylesheet" href="/static/settings.css">
+</head>
+<body>
+<main class="page">
+  <header class="head">
+    <div class="mark"><span class="mark-seat"></span>Settee</div>
+    <h1>Settings</h1>
+    <p class="lead">Changes reach the TV within 15 seconds. This page only opens on the TV's own PC.</p>
+  </header>
+
+  <form id="form" autocomplete="off">
+    <fieldset>
+      <legend>Look</legend>
+      <div class="choices" id="looks">
+        <label><input type="radio" name="look" value="evening"> Evening</label>
+        <label><input type="radio" name="look" value="daylight"> Daylight</label>
+      </div>
+      <div class="choices accents" id="accents">
+        <label><input type="radio" name="accent" value="marigold"><i class="a-marigold"></i> Marigold</label>
+        <label><input type="radio" name="accent" value="coral"><i class="a-coral"></i> Coral</label>
+        <label><input type="radio" name="accent" value="sage"><i class="a-sage"></i> Sage</label>
+        <label><input type="radio" name="accent" value="sky"><i class="a-sky"></i> Sky</label>
+        <label><input type="radio" name="accent" value="plum"><i class="a-plum"></i> Plum</label>
+      </div>
+      <label class="field">Language
+        <select name="language"><option value="en">English</option><option value="sv">Svenska</option></select>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Weather</legend>
+      <p class="now">Place: <b id="place-now">not chosen</b></p>
+      <div class="search">
+        <label class="field grow">Find your town <input id="place-q" type="search" placeholder="e.g. Gothenburg"></label>
+        <button type="button" class="secondary" id="place-find">Search</button>
+      </div>
+      <ul class="hits" id="hits"></ul>
+    </fieldset>
+
+    <fieldset>
+      <legend>News and photos</legend>
+      <label class="field">News feed (RSS or Atom address; empty turns the news off) <input name="news" type="url" placeholder="https://"></label>
+      <label class="field">Photo folder on this PC <input name="photos" type="text"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Channels</legend>
+      <p class="hint">A web site opens in the PC's default browser; a program opens by its path (for example <code>C:\Program Files\VideoLAN\VLC\vlc.exe</code>). The number on the remote is the position in this list.</p>
+      <ol class="channels" id="channels"></ol>
+      <button type="button" class="secondary" id="add">Add a channel</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>Phones</legend>
+      <p class="now" id="phones"></p>
+      <button type="button" class="secondary" id="forget">Forget every phone</button>
+    </fieldset>
+
+    <div class="save">
+      <button class="primary" type="submit">Save</button>
+      <p id="saved" role="status"></p>
+    </div>
+  </form>
+</main>
+<template id="row">
+  <li class="channel">
+    <span class="num"></span>
+    <label class="field"><span class="sr">Name</span><input class="c-name" placeholder="Name" maxlength="40" required></label>
+    <label class="field"><span class="sr">Kind</span><select class="c-kind"><option value="web">Web site</option><option value="app">Program</option></select></label>
+    <label class="field grow"><span class="sr">Address or path</span><input class="c-target" placeholder="https://… or C:\…" maxlength="500" required></label>
+    <button type="button" class="small c-up">Move up</button>
+    <button type="button" class="small c-del">Remove</button>
+  </li>
+</template>
+<script src="/static/settings.js"></script>
+</body>
+</html>
